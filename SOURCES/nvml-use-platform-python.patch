@@ -1,0 +1,21 @@
+diff -up nvml-1.5/src/Makefile.orig nvml-1.5/src/Makefile
+--- nvml-1.5/src/Makefile.orig	2018-10-31 17:05:03.774754808 -0400
++++ nvml-1.5/src/Makefile	2018-10-31 17:05:03.775754811 -0400
+@@ -199,7 +199,7 @@ install: all pkg-config
+ 	install -d $(PMREORDER_DESTDIR)
+ 	install -p -m 0644 $(PMREORDER_FILES) $(PMREORDER_DESTDIR)
+ 	@echo "#!/bin/sh" > $(PMREORDER_SRC)/pmreorder
+-	@echo "exec python3 $(PMREORDER_ROOTDIR)/pmreorder.py \$$*" >> $(PMREORDER_SRC)/pmreorder
++	@echo "exec /usr/libexec/platform-python $(PMREORDER_ROOTDIR)/pmreorder.py \$$*" >> $(PMREORDER_SRC)/pmreorder
+ 	install -d $(PMREORDER_BIN)
+ 	install -p $(PMREORDER_SRC)/pmreorder $(PMREORDER_BIN)
+ 	$(RM) $(PKG_CONFIG_FILES)
+diff -up nvml-1.5/src/tools/pmreorder/pmreorder.py.orig nvml-1.5/src/tools/pmreorder/pmreorder.py
+--- nvml-1.5/src/tools/pmreorder/pmreorder.py.orig	2018-10-31 17:05:23.932810923 -0400
++++ nvml-1.5/src/tools/pmreorder/pmreorder.py	2018-10-31 17:05:23.932810923 -0400
+@@ -1,4 +1,4 @@
+-#!/usr/bin/python
++#!/usr/libexec/platform-python
+ #
+ # Copyright 2018, Intel Corporation
+ #
