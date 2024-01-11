@@ -1,0 +1,18 @@
+--- pmdk-1.12.1/src/Makefile.inc.orig	2022-10-17 11:06:39.232365095 -0400
++++ pmdk-1.12.1/src/Makefile.inc	2022-10-17 11:09:28.751365095 -0400
+@@ -73,14 +73,10 @@ endif
+ DEFAULT_CFLAGS += -Wno-deprecated-declarations
+ 
+ ifeq ($(DEBUG),1)
+-# Undefine _FORTIFY_SOURCE in case it's set in system-default or
+-# user-defined CFLAGS as it conflicts with -O0.
+-DEBUG_CFLAGS += -Wp,-U_FORTIFY_SOURCE
+-DEBUG_CFLAGS += -O0 -ggdb -DDEBUG
+ LIB_SUBDIR = /pmdk_debug
+ OBJDIR = debug
+ else
+-DEFAULT_CFLAGS += -O2 -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=2
++DEFAULT_CFLAGS += -O2 -g -D_FORTIFY_SOURCE=2
+ LIB_SUBDIR =
+ OBJDIR = nondebug
+ endif
